@@ -33,42 +33,12 @@ WALLET_ADDRESS=0x... SESSION_KEY=0x... RPC_URL=https://... ./pin-upload.mjs ./fi
 npx --yes github:davidgasquez/filecoin-pin-upload <file-or-folder>
 ```
 
-For reproducible testing, pin a commit:
-
-```bash
-npx --yes github:davidgasquez/filecoin-pin-upload#<commit-sha> <file-or-folder>
-```
-
-Example:
-
-```bash
-npx --yes github:davidgasquez/filecoin-pin-upload /tmp/filecoin-pin-hello.txt
-```
-
 Do not use this default configuration for production uploads. Anyone running the
 repo without env overrides uses the same public Calibration demo wallet/session
 key configured in `pin-upload.mjs`.
 
 Default uploads use one copy on Calibration provider `2` (`ezpdpz-calib2`) so
 the command completes without interactive provider selection.
-
-## Agent usage
-
-For prompts like "Read X and upload Y":
-
-1. Read or fetch `X`.
-2. Write the requested upload content `Y` to a temp file or folder.
-3. Run:
-
-```bash
-npx --yes github:davidgasquez/filecoin-pin-upload <file-or-folder>
-```
-
-4. Return the `Root CID`, `IPFS in-browser link`, `IPFS gateway link`, `Piece
-   CID`, and provider `Copy` URL from the command output.
-
-The root [SKILL.md](./SKILL.md) contains the same concise workflow for agents
-that support skills.
 
 ## CIDs and links
 
@@ -94,18 +64,3 @@ Piece CID: bafkz...
 
 For command-line verification, use the `ipfs.io` link. `inbrowser.link` serves
 a browser service-worker shell to non-browser clients such as `curl`.
-
-## Test
-
-```bash
-perl -e 'print "hello world\n" x 400' > /tmp/filecoin-pin-hello.txt
-./pin-upload.mjs /tmp/filecoin-pin-hello.txt
-```
-
-Last verified result:
-
-- Root CID: `bafkreigyqxs6tebz6rjuvvbam4sx5k5reixuwtkx5j36bklzojbwbyqpze`
-- In-browser link: `https://bafkreigyqxs6tebz6rjuvvbam4sx5k5reixuwtkx5j36bklzojbwbyqpze.ipfs.inbrowser.link`
-- Gateway link: `https://ipfs.io/ipfs/bafkreigyqxs6tebz6rjuvvbam4sx5k5reixuwtkx5j36bklzojbwbyqpze`
-- Piece CID: `bafkzcibdt4mqr552kautfbdybkuqnwzwjjtvgwr5ahdemrigvi4d6lldtcvuoti5`
-- Network: Calibration
